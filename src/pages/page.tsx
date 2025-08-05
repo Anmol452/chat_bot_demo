@@ -7,6 +7,7 @@ type Option = {
   label: string;
   nextId?: string;
   isSupport?: boolean;
+  isSupportpss?: boolean;
   options?: Option[];
 };
 
@@ -24,7 +25,13 @@ const initialSteps: Step[] = [
       {
         label: "Login Problem",
         options: [
-          { label: "Forgot Password", isSupport: true },
+          { label: "Forgot Password", 
+            options: [
+                  { label: "useing by email",  isSupportpss: true },
+                  { label: "useing by username", isSupportpss: true },
+                  { label: "useing by phone no", isSupportpss: true },
+                ],
+          },
           { label: "Correct password but login fails", isSupport: true },
         ],
       },
@@ -83,7 +90,21 @@ export default function ChatBot() {
         { type: "bot", text: "Please select one of the following options:" },
       ]);
       setCurrentOptions(option.options);
-    }
+    }else if (option.isSupportpss) {
+      setMessages((m) => [
+        ...m,
+        {
+          type: "bot",
+          text:
+            "step 1 = select login page\n" +
+            "step 2 = click on forgot password\n" +
+            "step 3 = enter your email or username or phone no\n" +
+            "inter ypur otp\n" +
+            "step 4 = click on send otp button",
+        },
+      ]);
+      setCurrentOptions([]);
+    } 
   };
 
   return (
