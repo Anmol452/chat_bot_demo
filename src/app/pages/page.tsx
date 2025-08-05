@@ -28,7 +28,7 @@ const initialSteps: Step[] = [
           { label: "Correct password but login fails", isSupport: true },
         ],
       },
-      {
+      { 
         label: "Payment Problem",
         options: [
           {
